@@ -1,0 +1,31 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+    -webkit-user-select: none; /* Chrome, Safari, and Opera */
+    -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+}
+
+body {
+    overflow: hidden;
+}
+
+svg {
+    width: 5%;
+}
+
+text {
+    font-size: 10rem;
+    font-weight: 600;
+    color: #ffffff;
+    fill: #ffffff
+}
+
+polygon[style*="fill:rgba(255, 255, 100, .15)"]:hover {
+    fill: rgba(255, 255, 255, .8) !important
+}
