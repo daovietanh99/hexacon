@@ -50,10 +50,10 @@ class Index extends React.Component{
                     if((y == 11 && prev.currentPlayer === "#0080ff") || (x == 11 && prev.currentPlayer === "#e50000")) {
                       win = true;
                       let result = path[path.length -1];
-                      prev.arrayEl[x][y] = "#ffffff";
-                      prev.arrayEl[point.x][point.y] = "#ffffff";
+                      prev.arrayEl[x][y] = "rgba(255, 255, 255, .4)";
+                      prev.arrayEl[point.x][point.y] = "rgba(255, 255, 255, .4)";
                       while(result && result.index !== -1) {
-                        prev.arrayEl[result.x][result.y] = "#ffffff";
+                        prev.arrayEl[result.x][result.y] = "rgba(255, 255, 255, .4)";
                         result = path[result.index];
                       } 
                       break;
@@ -79,7 +79,7 @@ class Index extends React.Component{
         row.push(
           <Hexagon
             style={{
-              stroke: (i == 0 || i == 12) ? "#e50000" : (j == 0 || j == 12) ? "#0080ff" : (this.state.arrayEl[i] && this.state.arrayEl[i][j] && this.state.arrayEl[i][j] === "#ffffff")? this.state.winner:'#ffffff', 
+              stroke: (i == 0 || i == 12) ? "#e50000" : (j == 0 || j == 12) ? "#0080ff" : (this.state.arrayEl[i] && this.state.arrayEl[i][j] && this.state.arrayEl[i][j] === "rgba(255, 255, 255, .4)")? this.state.winner:'#ffffff', 
               strokeWidth: this.state.strokeWidth,
               fill: 
                 (this.state.arrayEl[i] && this.state.arrayEl[i][j])? this.state.arrayEl[i][j] : ((j == 0 || j == 12) || (i == 0 || i == 12)) ? "transparent" : 'rgba(255, 255, 100, .15)'
