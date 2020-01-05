@@ -11840,7 +11840,7 @@ function (_React$Component) {
       var _loop = function _loop(i) {
         if (!(i == 0 && j == 0 || i == 12 && j == 12 || i == 0 && j == 12 || i == 12 && j == 0)) row.push(__jsx(react_hexagon__WEBPACK_IMPORTED_MODULE_9___default.a, {
           style: {
-            stroke: i == 0 || i == 12 ? "#e50000" : j == 0 || j == 12 ? "#0080ff" : '#ffffff',
+            stroke: i == 0 || i == 12 ? "#e50000" : j == 0 || j == 12 ? "#0080ff" : _this.state.arrayEl[i] && _this.state.arrayEl[i][j] && _this.state.arrayEl[i][j] === "rgba(255, 255, 255, .4)" ? _this.state.winner : '#ffffff',
             strokeWidth: _this.state.strokeWidth,
             fill: _this.state.arrayEl[i] && _this.state.arrayEl[i][j] ? _this.state.arrayEl[i][j] : j == 0 || j == 12 || i == 0 || i == 12 ? "transparent" : 'rgba(255, 255, 100, .15)'
           },
@@ -11850,7 +11850,7 @@ function (_React$Component) {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 71
+            lineNumber: 80
           },
           __self: this
         }, !(i !== 0 && j !== 0 && i !== 12 && j !== 12) ? __jsx("text", {
@@ -11858,13 +11858,13 @@ function (_React$Component) {
           y: "60%",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 83
+            lineNumber: 92
           },
           __self: this
         }, i == 0 ? j : j == 12 ? String.fromCharCode(i + 64) : "") : __jsx("text", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 83
+            lineNumber: 92
           },
           __self: this
         })));else row.push(__jsx(gestalt__WEBPACK_IMPORTED_MODULE_10__["Box"], {
@@ -11872,7 +11872,7 @@ function (_React$Component) {
           key: "tile" + i + j,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 87
+            lineNumber: 96
           },
           __self: this
         }));
@@ -11903,7 +11903,7 @@ function (_React$Component) {
           key: "row" + i,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 96
+            lineNumber: 105
           },
           __self: this
         }, _this.row(i)));
@@ -11975,18 +11975,22 @@ function (_React$Component) {
                         queue.push({
                           x: _x,
                           y: y,
-                          index: path.length - 1
+                          index: path.length
                         });
                         if (!arrayVis[_x]) arrayVis[_x] = [];
                         arrayVis[_x][y] = true;
 
-                        if (y == 11 && prev.currentPlayer === "#0080ff") {
-                          console.log("win win win blue");
+                        if (y == 11 && prev.currentPlayer === "#0080ff" || _x == 11 && prev.currentPlayer === "#e50000") {
                           win = true;
-                          break;
-                        } else if (_x == 11 && prev.currentPlayer === "#e50000") {
-                          console.log("win win win red");
-                          win = true;
+                          var result = path[path.length - 1];
+                          prev.arrayEl[_x][y] = "rgba(255, 255, 255, .4)";
+                          prev.arrayEl[point.x][point.y] = "rgba(255, 255, 255, .4)";
+
+                          while (result && result.index !== -1) {
+                            prev.arrayEl[result.x][result.y] = "rgba(255, 255, 255, .4)";
+                            result = path[result.index];
+                          }
+
                           break;
                         }
                       }
@@ -12019,14 +12023,14 @@ function (_React$Component) {
         display: "flex",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 116
+          lineNumber: 125
         },
         __self: this
       }, __jsx(gestalt__WEBPACK_IMPORTED_MODULE_10__["Column"], {
         span: 9,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 117
+          lineNumber: 126
         },
         __self: this
       }, __jsx(gestalt__WEBPACK_IMPORTED_MODULE_10__["Box"], {
@@ -12038,7 +12042,7 @@ function (_React$Component) {
         color: "transparentDarkGray",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 118
+          lineNumber: 127
         },
         __self: this
       }, __jsx(gestalt__WEBPACK_IMPORTED_MODULE_10__["Box"], {
@@ -12050,14 +12054,14 @@ function (_React$Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 119
+          lineNumber: 128
         },
         __self: this
       }, this.table()))), __jsx(gestalt__WEBPACK_IMPORTED_MODULE_10__["Column"], {
         span: 3,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 128
+          lineNumber: 137
         },
         __self: this
       }));
