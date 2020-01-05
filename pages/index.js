@@ -44,11 +44,20 @@ class Index extends React.Component{
               for(let x = point.x - 1; x <= point.x + 1; x ++) {
                 for(let y = point.y - 1; y <= point.y + 1; y ++) {
                   if(prev.arrayEl[x] && prev.arrayEl[x][y] == prev.currentPlayer && (!arrayVis[x] || !arrayVis[x][y]) && !(x == point.x -1 && y == point.y -1) && !(x == point.x +1 && y == point.y +1)) {
-                    queue.push({x: x, y: y, index: path.length - 1})
+                    queue.push({x: x, y: y, index: path.length})
                     if(!arrayVis[x]) arrayVis[x] = []
                     arrayVis[x][y] = true;
-                    if(y == 11 && prev.currentPlayer === "#0080ff") {console.log("win win win blue"); win = true; break;}
-                    else if(x == 11 && prev.currentPlayer === "#e50000") {console.log("win win win red"); win = true; break;}
+                    if((y == 11 && prev.currentPlayer === "#0080ff") || (x == 11 && prev.currentPlayer === "#e50000")) {
+                      win = true;
+                      let result = path[path.length -1];
+                      prev.arrayEl[x][y] = "#ffffff";
+                      prev.arrayEl[point.x][point.y] = "#ffffff";
+                      while(result && result.index !== -1) {
+                        prev.arrayEl[result.x][result.y] = "#ffffff";
+                        result = path[result.index];
+                      } 
+                      break;
+                    }
                   }
                 }
               }
@@ -70,7 +79,7 @@ class Index extends React.Component{
         row.push(
           <Hexagon
             style={{
-              stroke: (i == 0 || i == 12) ? "#e50000" : (j == 0 || j == 12) ? "#0080ff" : '#ffffff', 
+              stroke: (i == 0 || i == 12) ? "#e50000" : (j == 0 || j == 12) ? "#0080ff" : (this.state.arrayEl[i] && this.state.arrayEl[i][j] && this.state.arrayEl[i][j] === "#ffffff")? this.state.winner:'#ffffff', 
               strokeWidth: this.state.strokeWidth,
               fill: 
                 (this.state.arrayEl[i] && this.state.arrayEl[i][j])? this.state.arrayEl[i][j] : ((j == 0 || j == 12) || (i == 0 || i == 12)) ? "transparent" : 'rgba(255, 255, 100, .15)'
