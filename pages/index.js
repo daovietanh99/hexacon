@@ -1,5 +1,6 @@
 import Hexagon from 'react-hexagon';
 import { Box, Column } from 'gestalt';
+import Head  from 'next/head';
 import Menu from '../components/menu';
 import 'gestalt/dist/gestalt.css';
 import './index.css';
@@ -124,6 +125,10 @@ class Index extends React.Component{
   render() {
     return (
     <Box width="100%" height="100vh" display="flex">
+      <Head>
+        <title key="title">Contactix</title>
+        
+      </Head>
       <Column span={9}>
         <Box display="flex" justifyContent="center" alignItems="center" alignContent="center" height="100vh" color="transparentDarkGray">
           <Box 

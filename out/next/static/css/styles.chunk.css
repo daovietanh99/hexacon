@@ -31,4 +31,8 @@ polygon[style*="fill:rgba(255, 255, 100, .15)"]:hover {
     fill: rgba(255, 255, 255, .8) !important
 }
 
+.button_login svg {
+    width: 100%;
+}
+
 /*# sourceMappingURL=styles.chunk.css.map*/

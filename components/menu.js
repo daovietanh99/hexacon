@@ -1,5 +1,7 @@
 import Hexagon from 'react-hexagon';
-import { Box, Column } from 'gestalt';
+import { Box, Column, Text } from 'gestalt';
+import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
+import Checkbox from '@material-ui/core/Checkbox';
 import firebase from "firebase";
 import firebaseApp from "./base";
 import 'gestalt/dist/gestalt.css';
@@ -9,7 +11,8 @@ class Menu extends React.Component{
         super(props)
         this.state = {
             email: null,
-            displayName: null
+            displayName: null,
+            photo: null
         };
     }
     //xác thực theo provider
@@ -27,7 +30,8 @@ class Menu extends React.Component{
         console.log(user)
         this.setState({
             email: user.email,
-            displayName: user.displayName
+            displayName: user.displayName,
+            photo: user.photoURL
         });
     };
     
@@ -46,14 +50,33 @@ class Menu extends React.Component{
     }
 
     render() {
-        if (!this.state.email) {
-            return <button onClick={() => this.authenticate("Facebook")}>Facebook</button>
-        }
         return (
-            <Box>
-                <button onClick={() => this.logout()}>Logout</button>
-                <Box>{this.state.displayName}</Box>
-                <Box>{this.state.email}</Box>
+            <Box height="100vh" overflow="hidden">
+                <Box height="50vh">
+                    {
+                        (!this.state.email) ? 
+                        <Box>
+                            <FacebookLoginButton onClick={() => this.authenticate("Facebook")} className="button_login"/>
+                            <GoogleLoginButton onClick={() => this.authenticate("Google")} className="button_login"/>
+                            <Box>
+                            <Checkbox
+                                defaultChecked
+                                value="secondary"
+                                color="primary"
+                                inputProps={{ 'aria-label': 'secondary checkbox' }}
+                            />
+                            </Box>
+                        </Box> :
+                        <div>
+                            <button onClick={() => this.logout()}>Logout</button>
+                            <Box>{this.state.displayName}</Box>
+                            <img src={this.state.photo + "?type=large"}/>
+                        </div>
+                    }
+                </Box>
+                <Box height="50vh" paddingX={2}>
+                    <Text weight="bold">Advertisement</Text>
+                </Box>
             </Box>
         )
     }
