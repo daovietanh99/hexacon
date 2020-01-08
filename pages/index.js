@@ -127,7 +127,18 @@ class Index extends React.Component{
     <Box width="100%" height="100vh" display="flex">
       <Head>
         <title key="title">Contactix</title>
-        
+        <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"></link>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-2447288350153895",
+                enable_page_level_ads: true
+              });
+            `
+          }}
+        />
       </Head>
       <Column span={9}>
         <Box display="flex" justifyContent="center" alignItems="center" alignContent="center" height="100vh" color="transparentDarkGray">
