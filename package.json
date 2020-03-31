@@ -13,7 +13,7 @@
     "@zeit/next-css": "^1.0.1",
     "firebase": "^7.6.1",
     "gestalt": "^0.112.0",
-    "next": "9.1.7",
+    "next": "9.3.2",
     "re-base": "^4.0.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
